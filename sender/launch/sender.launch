@@ -1,0 +1,4 @@
+<launch>
+    <node name="sender" pkg="sender" type="sender_node.py"/>
+    <node name="robot_state_receiver" pkg="robot_state_receiver" type="robot_state_receiver_node.py"/>
+</launch>

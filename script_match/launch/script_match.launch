@@ -1,0 +1,18 @@
+<launch>
+    <node name="robot_state_reciever" pkg="robot_state_reciever" type="robot_state_reciever.py">
+        <param name="serial_baudrate" value="115200"/>
+        <param name="pic_msg_freq" value="9"/>
+        <param name="action_topic" value="/action_orders"/>
+        <param name="robot_state_topic" value="/robot_state"/>
+    </node>
+    <node name="sender" pkg="sender" type="sender_node.py">
+        <param name="serial_baudrate" value="115200"/>
+        <param name="action_topic" value="/action_orders"/>
+        <param name="versionPic_topic" value="/init/version_PIC"/>
+    </node>
+    <node name="match_handler" pkg="script_match" type="match_handler.py" respawn="true"
+          respawn_delay="0.5">
+        <param name="action_topic" value="/action_orders"/>
+        <param name="script_name" value="statuebot"/>
+    </node>
+</launch>

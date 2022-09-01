@@ -1,0 +1,25 @@
+<launch>
+    <include file="$(find rosbridge_server)/launch/rosbridge_websocket.launch" > 
+        <arg name="port" value="8080"/>
+    </include>
+    <node name="virtual_robot" pkg="virtual_robot" type="virtual_robot_node.py"/>
+    <node name="robot_state_reciever" pkg="robot_state_reciever" type="robot_state_reciever.py">
+        <param name="serial_baudrate" value="115200"/>
+        <param name="pic_msg_freq" value="9"/>
+        <param name="action_topic" value="/action_orders"/>
+        <param name="robot_state_topic" value="/robot_state"/>
+        <param name="debug_mode" value="True"/>
+    </node>
+    <node name="sender" pkg="sender" type="sender_node.py">
+        <param name="serial_baudrate" value="115200"/>
+        <param name="action_topic" value="/action_orders"/>
+        <param name="versionPic_topic" value="/init/version_PIC"/>
+        <param name="debug_mode" value="True"/>
+    </node>
+    <node name ="nav_node" pkg="nav_node" type="nav_node.py"/>
+    <node name="match_handler" pkg="script_match" type="match_handler.py" respawn="true"
+          respawn_delay="0.5">
+        <param name="action_topic" value="/action_orders"/>
+        <param name="script_name" value="simulation"/>
+    </node>
+</launch>

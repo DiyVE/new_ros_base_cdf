@@ -1,0 +1,5 @@
+<launch>
+    <node name="robot_state_reciever" pkg="robot_state_reciever" type="robot_state_reciever.py">
+        <param name="debug_mode" type="bool" value="true"/>
+    </node>
+</launch>
