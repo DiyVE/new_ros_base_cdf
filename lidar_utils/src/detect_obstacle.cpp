@@ -66,7 +66,7 @@ class Obstacle_detector
 	        stateBack = 0;   // no obstacle
 
             laser_sub_ = n.subscribe("scan", 1, &Obstacle_detector::callback, this);
-            avoidOrder_p = n.advertise<sender::Pic_Action>("/action_orders", 1);
+            avoidOrder_p = n.advertise<cdf_msgs::Pic_Action>("/action_orders", 1);
         }
 
     private:
@@ -76,7 +76,7 @@ class Obstacle_detector
         ros::Subscriber laser_sub_;
         ros::NodeHandle n;
         // std_msgs::String msg; // Message to send : TRUE = STOP ROBOT.
-        sender::Pic_Action msg;
+        cdf_msgs::Pic_Action msg;
 
     /* Description repère par rapport au placement du LIDAR
           [Avant du Robot]

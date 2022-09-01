@@ -5,6 +5,7 @@ find_package(catkin REQUIRED COMPONENTS
   laser_geometry
   roscpp
   sensor_msgs
+  cdf_msgs
   tf
   sender
 )

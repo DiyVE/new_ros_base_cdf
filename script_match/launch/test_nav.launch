@@ -1,0 +1,16 @@
+<launch>
+    <include file="$(find rosbridge_server)/launch/rosbridge_websocket.launch" > 
+        <arg name="port" value="8080"/>
+    </include>
+    <node name="robot_state_reciever" pkg="robot_state_reciever" type="robot_state_reciever.py">
+        <param name="serial_baudrate" value="115200"/>
+        <param name="pic_msg_freq" value="9"/>
+    </node>
+    <node name="sender" pkg="sender" type="sender_node.py">
+        <param name="serial_baudrate" value="115200"/>
+    </node>
+    <node name="match_handler" pkg="script_match" type="match_handler.py" respawn="true"
+          respawn_delay="0.5">
+        <param name="script_name" value="simulation"/>
+    </node>
+</launch>
