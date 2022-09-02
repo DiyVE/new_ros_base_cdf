@@ -1,6 +1,6 @@
 <launch>
     <include file="$(find rosbridge_server)/launch/rosbridge_websocket.launch" > 
-        <arg name="port" value="8080"/>
+        <arg name="port" value="8070"/>
     </include>
     <node name="virtual_robot" pkg="virtual_robot" type="virtual_robot_node.py"/>
     <node name="robot_state_reciever" pkg="robot_state_reciever" type="robot_state_reciever.py">
@@ -16,7 +16,10 @@
         <param name="versionPic_topic" value="/init/version_PIC"/>
         <param name="debug_mode" value="True"/>
     </node>
-    <node name ="nav_node" pkg="nav_node" type="nav_node.py"/>
+    <node name ="nav_node" pkg="nav_node" type="nav_node.py">
+        <param name="graph_file" value="$(find nav_node)/src/graphfiles/joli.gml"/>
+        <param name="cv_obstacle_file" value="$(find nav_node)/src/graphfiles/cdf2022_map.png"/>
+    </node>
     <node name="match_handler" pkg="script_match" type="match_handler.py" respawn="true"
           respawn_delay="0.5">
         <param name="action_topic" value="/action_orders"/>

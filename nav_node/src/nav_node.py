@@ -276,7 +276,7 @@ if __name__ == "__main__":
 
     position_goal_topic = rospy.get_param('~position_goal_topic', '/robot_x/Pos_goal')
     obstacles_topic = rospy.get_param('~obstacles_topic', '/obstacles')
-    action_orders_topic = rospy.get_param('~action_orders_topic', '/robot_x/actions')
+    action_orders_topic = rospy.get_param('~action_orders_topic', '/robot_x/action')
     next_point_topic = rospy.get_param('~next_point_topic', '/robot_x/asserv_next_point')
     graph_file = rospy.get_param('~graph_file', 'default')
     cv_obstacle_file = rospy.get_param('~cv_obstacle_file', 'default')

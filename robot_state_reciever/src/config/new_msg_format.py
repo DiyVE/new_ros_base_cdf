@@ -1,5 +1,5 @@
 from cdf_msgs.msg import RobotData
-from std_msgs.msg import String
+from std_msgs.msg import String, Bool
 
 msgs_dict = {
     "motor" : {
@@ -11,11 +11,7 @@ msgs_dict = {
             "structure": {
                 0: {
                     "value_expression": lambda x: 1,
-                    "path": "velocity.z"
-                },
-                1: {
-                    "value_expression": lambda x: 1,
-                    "path": "position.z"
+                    "path": "pic_time"
                 },
                 2: {
                     "value_expression": lambda x: x,
@@ -27,15 +23,27 @@ msgs_dict = {
                 },
                 4: {
                     "value_expression": lambda x: x,
-                    "path": "velocity.x"
+                    "path": "linear_velocity"
                 },
                 5: {
                     "value_expression": lambda x: x,
-                    "path": "velocity.y"
+                    "path": "angular_velocity"
                 },
                 6: {
                     "value_expression": lambda x: x,
                     "path": "theta"
+                }
+            }
+        },
+        "motion_done": {
+            "topic_rosparam": "~asserv_motion_done_topic",
+            "topic_default": "/robot_x/motion_done",
+            "type": Bool,
+            "publish_on_change": False,
+            "structure": {
+                1: {
+                    "value_expression": lambda x: bool(int(x)),
+                    "path": "data"
                 }
             }
         }
